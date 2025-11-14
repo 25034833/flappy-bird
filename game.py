@@ -126,3 +126,22 @@ def restart_game():
     
     # Reset score display
     update_score()
+# Collision detection
+def check_collision():
+    # Check ground and ceiling
+    if bird.ycor() > 270 or bird.ycor() < -250:
+        return True
+    
+    # Check pipes
+    for pipe in pipes:
+        pipe_x = pipe['x']
+        if -220 < pipe_x < -180:
+            top_y = pipe['top'].ycor()
+            bottom_y = pipe['bottom'].ycor()
+            bird_y = bird.ycor()
+            
+            # Check if bird hits pipe
+            if bird_y > top_y - 135 or bird_y < bottom_y + 135:
+                return True
+    
+    return False
