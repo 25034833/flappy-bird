@@ -160,3 +160,50 @@ create_pipe()
 
 # Game loop counter
 loop_count = 0
+# Main game loop
+while True:
+    screen.update()
+    time.sleep(0.02)
+    
+    if not game_started:
+        continue
+    
+    if game_over:
+        continue
+    
+    loop_count += 1
+    
+    # Apply gravity
+    bird_velocity += gravity
+    bird.sety(bird.ycor() + bird_velocity)
+    
+    # Move pipes
+    for pipe in pipes:
+        pipe['x'] -= 3
+        pipe['top'].setx(pipe['x'])
+        pipe['bottom'].setx(pipe['x'])
+        
+        # Score when passing pipe
+        if pipe['x'] < -200 and not pipe['scored']:
+            pipe['scored'] = True
+            score += 1
+            update_score()
+    
+    # Remove off-screen pipes
+    if pipes and pipes[0]['x'] < -450:
+        pipes[0]['top'].hideturtle()
+        pipes[0]['bottom'].hideturtle()
+        pipes.pop(0)
+    
+    # Create new pipes
+    if loop_count % 90 == 0:
+        create_pipe()
+    
+    # Check collision
+    if check_collision():
+        game_over = True
+        instructions.clear()
+        game_over_display.write(
+            f"GAME OVER!\n\nFinal Score: {score}\n\nPress 'R' to Restart",
+            align="center", font=("Arial", 28, "bold")
+        )
