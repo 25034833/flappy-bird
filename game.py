@@ -60,3 +60,32 @@ instructions.penup()
 instructions.hideturtle()
 instructions.goto(0, 200)
 instructions.write("Press SPACE to flap!", align="center", font=("Arial", 18, "normal"))
+# Create pipe pair
+def create_pipe():
+    gap = 150
+    height = random.randint(-150, 150)
+    
+    # Top pipe
+    top_pipe = turtle.Turtle()
+    top_pipe.speed(0)
+    top_pipe.shape("square")
+    top_pipe.color("green")
+    top_pipe.shapesize(stretch_wid=15, stretch_len=3)
+    top_pipe.penup()
+    top_pipe.goto(400, height + gap + 150)
+    
+    # Bottom pipe
+    bottom_pipe = turtle.Turtle()
+    bottom_pipe.speed(0)
+    bottom_pipe.shape("square")
+    bottom_pipe.color("green")
+    bottom_pipe.shapesize(stretch_wid=15, stretch_len=3)
+    bottom_pipe.penup()
+    bottom_pipe.goto(400, height - 150)
+    
+    pipes.append({
+        'top': top_pipe,
+        'bottom': bottom_pipe,
+        'x': 400,
+        'scored': False
+    })
