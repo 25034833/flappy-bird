@@ -95,3 +95,34 @@ def flap():
     if not game_over:
         bird_velocity = 5
         game_started = True
+# Reset game
+def restart_game():
+    global score, game_over, bird_velocity, pipes, loop_count, game_started
+    
+    # Reset variables
+    score = 0
+    game_over = False
+    bird_velocity = 0
+    loop_count = 0
+    game_started = False
+    
+    # Reset bird position
+    bird.goto(-200, 0)
+    
+    # Clear all pipes
+    for pipe in pipes:
+        pipe['top'].hideturtle()
+        pipe['bottom'].hideturtle()
+    pipes.clear()
+    
+    # Create initial pipe
+    create_pipe()
+    
+    # Clear displays
+    game_over_display.clear()
+    instructions.clear()
+    instructions.goto(0, 200)
+    instructions.write("Press SPACE to flap!", align="center", font=("Arial", 18, "normal"))
+    
+    # Reset score display
+    update_score()
