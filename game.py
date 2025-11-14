@@ -89,3 +89,9 @@ def create_pipe():
         'x': 400,
         'scored': False
     })
+# Bird flap
+def flap():
+    global bird_velocity, game_started
+    if not game_over:
+        bird_velocity = 5
+        game_started = True
