@@ -207,3 +207,5 @@ while True:
             f"GAME OVER!\n\nFinal Score: {score}\n\nPress 'R' to Restart",
             align="center", font=("Arial", 28, "bold")
         )
+# Keep window open
+screen.mainloop()
