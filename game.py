@@ -145,3 +145,18 @@ def check_collision():
                 return True
     
     return False
+# Update score
+def update_score():
+    score_display.clear()
+    score_display.write(f"Score: {score}", align="center", font=("Arial", 24, "bold"))
+
+# Keyboard binding
+screen.listen()
+screen.onkey(flap, "space")
+screen.onkey(restart_game, "r")
+
+# Create initial pipes
+create_pipe()
+
+# Game loop counter
+loop_count = 0
